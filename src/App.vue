@@ -1,73 +1,78 @@
 <template>
-  
-    <div class="container my-5">
-      <h1 class="bg-success p-2 text-white text-center">เลือกสินค้าใส่ offcanvas</h1>
-      <hr />
+  <div class="container my-5">
+    <h1 class="bg-success p-2 text-white text-center">
+      เลือกสินค้าใส่ offcanvas
+    </h1>
+    <hr />
 
-      <div class="row justify-content-sm-center mt-4">
-        <div class="col-md-3 col-sm-6 col-xs-12 my-3" v-for="ca in pro" :key="ca.id">
-          <div class="card" style="width: 15rem">
-            <img :src="ca.img" class="card-img-top" />
-            <div align="center" class="card-body">
-              <h5 class="card-title">{{ ca.name }}</h5>
-              <p class="card-text">{{ ca.pri }}</p>
+    <div class="row justify-content-sm-center mt-4">
+      <div
+        class="col-md-3 col-sm-6 col-xs-12 my-3"
+        v-for="ca in pro"
+        :key="ca.id"
+      >
+        <div class="card" style="width: 15rem">
+          <img :src="ca.img" class="card-img-top" />
+          <div align="center" class="card-body">
+            <h5 class="card-title">{{ ca.name }}</h5>
+            <p class="card-text">{{ ca.pri }}</p>
 
-              <input
-                class="form-check-input"
-                type="checkbox"
-                :value="ca"
-                v-model="cart"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="offcanvas offcanvas-end p-3 bg-success bg-opacity-60 text-white"
-          tabindex="-1"
-          id="offcanvasRight"
-          data-bs-backdrop="false"
-        >
-          <div class="offcanvas-header">
-            <h5>รายการสินค้าในรถเข็น</h5>
-            <button
-              type="button"
-              class="btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-            ></button>
-          </div>
-          <div class="offcanvas-body">
-            <div v-if="cart.length == 0">ไม่มีสินค้าในรถเข็น</div>
-            <div v-else>
-              <!-- ถ้ามีสินค้าใน (อาร์เรย์) รถเข็น ให้แสดงรายการแบบลิสต์ -->
-              <ul>
-                <li v-for="item in cart" :key="item">{{ item.name }}</li>
-              </ul>
-
-              <!-- ปุ่มสำหรับยกเลิกสินค้าทั้งหมดในรถเข็น โดยการลบข้อมูลในอาร์เรย์ -->
-              <button class="btn btn-danger d-block my-4" @click="cart = []">
-                ลบทั้งหมด
-              </button>
-
-              <!-- แนวทางการใช้ Checkbox อันเดียว เพื่อกำหนดสถานะ -->
-              <div class="form-check mb-2">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  v-model="confirmCart"
-                />
-                <label for="chkConfirmCart" class="form-label mb-1"
-                  >ยืนยันสินค้าในรถเข็น</label
-                >
-              </div>
-              <button  class="btn btn-sm btn-primary" :disabled="!confirmCart">
-                ไปต่อ
-              </button>
-            </div>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              :value="ca"
+              v-model="cart"
+            />
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
-      <button 
+      <div
+        class="offcanvas offcanvas-end p-3 bg-success bg-opacity-60 text-white"
+        tabindex="-1"
+        id="offcanvasRight"
+        data-bs-backdrop="false"
+      >
+        <div class="offcanvas-header">
+          <h5>รายการสินค้าในรถเข็น</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <div v-if="cart.length == 0">ไม่มีสินค้าในรถเข็น</div>
+          <div v-else>
+            <!-- ถ้ามีสินค้าใน (อาร์เรย์) รถเข็น ให้แสดงรายการแบบลิสต์ -->
+            <ul>
+              <li v-for="item in cart" :key="item">{{ item.name }}</li>
+            </ul>
+
+            <!-- ปุ่มสำหรับยกเลิกสินค้าทั้งหมดในรถเข็น โดยการลบข้อมูลในอาร์เรย์ -->
+            <button class="btn btn-danger d-block my-4" @click="cart = []">
+              ลบทั้งหมด
+            </button>
+
+            <!-- แนวทางการใช้ Checkbox อันเดียว เพื่อกำหนดสถานะ -->
+            <div class="form-check mb-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                v-model="confirmCart"
+              />
+              <label for="chkConfirmCart" class="form-label mb-1"
+                >ยืนยันสินค้าในรถเข็น</label
+              >
+            </div>
+            <button class="btn btn-sm btn-primary" :disabled="!confirmCart">
+              ไปต่อ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <button
         class="btn btn-success my-3"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
@@ -75,8 +80,7 @@
         สำรวจรถเข็น
       </button>
     </div>
-    </div>
-  
+  </div>
 </template>
 <script>
 export default {
